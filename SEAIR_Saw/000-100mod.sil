@@ -1,0 +1,39 @@
+//HEADER
+problem: reachability;
+iterations:1;
+
+//SYMBOL DEFINITION
+5
+S 
+E 
+A
+I 
+R
+
+
+param mu in [0.08704,0.1306]; //   0,1088*[0,8,1,2]
+
+const alpha = 0.0025;
+const beta = 0.002;
+const gamma = 0.5;
+//const mu = 0,1088;
+const sigma = 0.2;
+//const k = 50;
+
+
+dynamic (S) = S - S*(alpha*A + beta*I);
+dynamic (E) = E + S*(alpha*A + beta*I) -gamma*E;
+dynamic (A) = A*(1 - sigma - mu) + gamma*E;
+dynamic (I) = I*(1 - mu) + sigma*A;
+dynamic (R) = R + mu*(A + I);
+
+
+
+//k = 50
+//2 1
+//1 0,075
+//0 -0,02
+
+//mu_zero: 1,2
+//0,1088
+//-0,1838

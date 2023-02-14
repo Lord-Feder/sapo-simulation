@@ -1,0 +1,43 @@
+//HEADER
+problem: reachability;
+iterations:600;
+
+//SYMBOL DEFINITION
+7
+S
+D
+A
+R
+T
+H
+E
+
+
+
+param alpha in [0.210,0.360];
+param gamma in [0.11,0.200];
+
+const beta = 0.005;
+const delta = 0.005;
+const epsilon = 0.143;
+const zeta = 0.034;
+const eta = 0.034;
+const theta = 0.371;
+const kappa = 0.017;
+const lambda = 0.08;
+const mu = 0.008;
+const nu = 0.015;
+const xi = 0.017;
+const rho = 0.017;
+const sigma = 0.017;
+const tau = 0.01;
+
+const step = 0.01;
+
+dynamic (S) = S - S*(alpha*(1-S-D-A-R-T-H-E) + beta*D + gamma*A + delta*R)*step;
+dynamic (D) = D + (epsilon*(1-S-D-A-R-T-H-E) -(eta + rho)*D)*step;
+dynamic (A) = A + (zeta*(1-S-D-A-R-T-H-E) -(theta + mu + kappa)*A)*step;
+dynamic (R) = R + (eta*D + theta*A -(nu + xi)*R)*step;
+dynamic (T) = T + (mu*A + nu*R -(sigma + tau)*T)*step;
+dynamic (H) = H + (lambda*(1-S-D-A-R-T-H-E) + rho*D + kappa*A + xi*R + sigma*T)*step;
+dynamic (E) = E + (tau*T)*step;
