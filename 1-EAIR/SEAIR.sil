@@ -1,0 +1,40 @@
+//HEADER
+problem: reachability;
+variable_mode: boxes ;
+iterations:100;
+
+//SYMBOL DEFINITION
+
+//var S in [0.54,0.56];
+var E in [0.41,0.419];
+var A in [0.01,0.019];
+var I in [0.01,0.011];
+var R in [0.01,0.011];
+
+
+param mu in [0.08704,0.1306]; //   0,1088*[0,8,1,2]
+
+const alpha = 0.0025;
+const beta = 0.002;
+const gamma = 0.5;
+//const mu = 0,1088;
+const sigma = 0.2;
+//const k = 50;
+
+
+//dynamic (S) = S - S*(alpha*A + beta*I);
+dynamic (E) = E + (1-E-A-I-R)*(alpha*A + beta*I) -gamma*E;
+dynamic (A) = A*(1 - sigma - mu) + gamma*E;
+dynamic (I) = I*(1 - mu) + sigma*A;
+dynamic (R) = R + mu*(A + I);
+
+
+
+//k = 50
+//2 1
+//1 0,075
+//0 -0,02
+
+//mu_zero: 1,2
+//0,1088
+//-0,1838
